@@ -76,7 +76,7 @@
         <main class="py-4">
             <div class="container-fluid text-center ">
 
-                @if (session()->has('message'))
+                @if (session()->get('message'))
                     <p class="alert alert-success">{{ session()->get('message') }}</p>
                 @endif
 

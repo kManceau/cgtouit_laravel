@@ -31,5 +31,13 @@
                 <button type="submit" class="btn btn-primary">Valider</button>
             </form>
         </div>
+
+        <div class="row">
+            <form class="col-4 mx-auto" action="{{ route('users.destroy', $user) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger my-3">Supprimer le compte</button>
+            </form>
+        </div>
     </div>
 @endsection
