@@ -13,7 +13,7 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->get('content') && $request->get('tags') && Auth::check()){
+        if($request->get('content') && $request->get('tags') && Auth::check() && Auth::user()->id === $post->user_id){
             $request->validate([
                 'content' => 'required',
                 'tags' => 'required'
@@ -60,8 +60,13 @@ class PostController extends Controller
     public function destroy(string $id)
     {
         $post = Post::findOrFail($id);
-        $post->delete();
-        return redirect()->back()
-            ->with('message', 'Revendication supprimée.');
+        if(Auth::check() && Auth::user()->id === $post->user_id){
+            $post->delete();
+            return redirect()->back()
+                ->with('message', 'Revendication supprimée.');
+        } else{
+            return redirect()->back()
+                ->with('message', 'Revendication non supprimée, casseur de grève !.');
+        }
     }
 }
