@@ -43,12 +43,12 @@
                                     ...
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item my-0" href="#">Editer</a></li>
+                                    <li><a class="dropdown-item  my-0" href="{{route('post.edit', $post->id)}}">Editer</a></li>
                                     <li>
                                         <form action="{{ route('post.destroy', $post->id)}}" method="POST" style="display: inline-block">
                                         @csrf
                                         @method('DELETE')
-                                            <button class="btn btn-link my-0" type="submit">Supprimer</button>
+                                            <button class="dropdown-item my-0" type="submit">Supprimer</button>
                                         </form>
                                     </li>
                                 </ul>

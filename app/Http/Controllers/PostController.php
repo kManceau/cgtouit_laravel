@@ -43,7 +43,13 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        if(Auth::check() && Auth::user()->id === $post->user_id) {
+            return view('posts.edit', compact('post'));
+        } else{
+            return redirect()->back()
+                ->with('message', 'Ce n\'est pas ta revendication !');
+        }
     }
 
     /**
@@ -51,7 +57,13 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $updatedPost = $request->validate([
+            'content' => 'required',
+            'tags' => 'required'
+        ]);
+        Post::whereId($id)->update($updatedPost);
+        return redirect()->route('home')
+            ->with('message', 'Revendication mise à jour');
     }
 
     /**

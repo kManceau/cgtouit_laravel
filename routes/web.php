@@ -11,6 +11,6 @@ Route::controller(PostController::class)->group(function () {
    Route::post('/', 'index')->name('post.store');
 });
 Route::resource('/post', PostController::class)
-    ->only(['destroy']);
+    ->only(['destroy', 'edit', 'update']);
 
 Route::resource('users', UserController::class)->except('index', 'create', 'store');
