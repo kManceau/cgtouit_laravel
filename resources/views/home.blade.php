@@ -58,10 +58,11 @@
                 </div>
                 <div class="card-body">
                     <p class="my-0">{{$post->content}}</p>
-                    <div class="mt-3 d-flex justify-content-between">
+                    <div class="my-3 d-flex justify-content-between">
                         <p class="my-0">Tags : {{$post->tags}}</p>
                         <time>{{$post->created_at}}</time>
                     </div>
+                    <a href="" class="text-decoration-none text-black">Commentaires : {{$post->comments->count()}}</a>
                 </div>
             </div>
         </div>
