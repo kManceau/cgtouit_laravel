@@ -35,18 +35,31 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <p>{{ __($post->user->pseudo) }}</p>
-                    @if(Auth::user()->id == $post->user->id)
-                        <div>
-                            <a href="">Editer</a>
-                            <a href="">Supprimer</a>
-                        </div>
+                    <p class="my-0">{{ __($post->user->pseudo) }}</p>
+                    @auth
+                        @if(Auth::user()->id == $post->user->id)
+                            <div class="dropdown my-0">
+                                <button class="btn my-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    ...
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item my-0" href="#">Editer</a></li>
+                                    <li>
+                                        <form action="{{ route('post.destroy', $post->id)}}" method="POST" style="display: inline-block">
+                                        @csrf
+                                        @method('DELETE')
+                                            <button class="btn btn-link my-0" type="submit">Supprimer</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        @endif
                     @endif
                 </div>
                 <div class="card-body">
-                    <p>{{$post->content}}</p>
+                    <p class="my-0">{{$post->content}}</p>
                     <div class="mt-3 d-flex justify-content-between">
-                        <p>Tags : {{$post->tags}}</p>
+                        <p class="my-0">Tags : {{$post->tags}}</p>
                         <time>{{$post->created_at}}</time>
                     </div>
                 </div>
