@@ -34,10 +34,18 @@
     <div class="row justify-content-center my-3">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __($post->user->pseudo) }}</div>
+                <div class="card-header d-flex justify-content-between">
+                    <p>{{ __($post->user->pseudo) }}</p>
+                    @if(Auth::user()->id == $post->user->id)
+                        <div>
+                            <a href="">Editer</a>
+                            <a href="">Supprimer</a>
+                        </div>
+                    @endif
+                </div>
                 <div class="card-body">
                     <p>{{$post->content}}</p>
-                    <div class="mt-5 d-flex flex-column">
+                    <div class="mt-3 d-flex justify-content-between">
                         <p>Tags : {{$post->tags}}</p>
                         <time>{{$post->created_at}}</time>
                     </div>
