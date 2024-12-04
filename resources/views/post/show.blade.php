@@ -34,7 +34,7 @@
                             </div>
                             <div class="card-body">
                                 <p class="my-0">{{$comment->content}}</p>
-                                <div class="my-3 d-flex justify-content-between">
+                                <div class="mt-3 d-flex justify-content-between">
                                     <p class="my-0">Tags : {{$comment->tags}}</p>
                                     <time>{{$comment->created_at}}</time>
                                 </div>
