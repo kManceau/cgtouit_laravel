@@ -36,7 +36,8 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('post.show', compact('post'));
     }
 
     /**
@@ -46,7 +47,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         if(Auth::check() && Auth::user()->id === $post->user_id) {
-            return view('posts.edit', compact('post'));
+            return view('post.edit', compact('post'));
         } else{
             return redirect()->back()
                 ->with('message', 'Ce n\'est pas ta revendication !');
